@@ -45,6 +45,15 @@ const cardInfoStyle = css`
   }
 `;
 
+const periodRowStyle = css({
+  display: "flex",
+  gap: "5px",
+});
+
+const periodStyle = css({
+  width: "20px",
+});
+
 const formatTwoDigitNumber = (n: number | undefined) => {
   if (!n) return;
   return String(n).padStart(2, "0");
@@ -80,10 +89,10 @@ const CreditCard: React.FC<Props> = ({ cardInfo: { cardNumbers, cardValidityPeri
             </div>
           ))}
         </div>
-        <div>
-          {formatTwoDigitNumber(Number(month))}
-          {month && "/"}
-          {year}
+        <div css={periodRowStyle}>
+          <span css={periodStyle}> {formatTwoDigitNumber(Number(month))}</span>
+          <span>{(month || year) && "/"}</span>
+          <span css={periodStyle}> {year}</span>
         </div>
         <div> {ownerName}</div>
       </section>
